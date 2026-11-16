@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="{{BASE}}">
+  <title>Sign in · {{APP_NAME}}</title>
+  <link rel="stylesheet" href="static/app.css">
+  <link rel="icon" href="static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <div class="login-shell">
+    <form class="card login-card" id="login-form" autocomplete="on">
+      <div class="brand">
+        <div class="brand-mark">ECC</div>
+        <div>
+          <div class="brand-name">{{APP_NAME}}</div>
+          <div class="brand-sub">Iowa State University · LVMC</div>
+        </div>
+      </div>
+      <h1>Sign in</h1>
+      <p class="muted small" style="margin:0 0 18px">For ECC residents, interns and faculty.</p>
+      <label class="field">Username
+        <input class="input" name="username" autocomplete="username" required autofocus>
+      </label>
+      <label class="field">Password
+        <input class="input" name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <div class="error" id="login-error" role="alert"></div>
+      <button class="btn primary" style="width:100%;justify-content:center" type="submit" id="login-btn">Sign in</button>
+      <p class="muted small" style="margin:16px 0 0">No account or forgot your password? Ask an ECC faculty member to set one up or reset it.</p>
+    </form>
+  </div>
+  <script src="static/login.js"></script>
+</body>
+</html>

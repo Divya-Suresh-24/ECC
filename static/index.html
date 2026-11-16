@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="{{BASE}}">
+  <title>{{APP_NAME}}</title>
+  <link rel="stylesheet" href="static/app.css">
+  <link rel="icon" href="static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">ECC</div>
+      <div style="min-width:0">
+        <div class="brand-name">{{APP_NAME}}</div>
+        <div class="brand-sub" id="brand-sub">Iowa State University · LVMC</div>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" data-view="ask" aria-selected="true">Ask</button>
+      <button class="tab" role="tab" data-view="library" aria-selected="false">Library</button>
+      <button class="tab" role="tab" data-view="faculty" aria-selected="false" id="faculty-tab" hidden>Faculty</button>
+    </nav>
+    <div class="spacer"></div>
+    <button class="btn small mobile-only" id="new-chat-m" type="button">＋ New</button>
+    <div class="usermenu">
+      <button class="userbtn" id="userbtn" aria-haspopup="true" aria-expanded="false">
+        <span class="avatar" id="avatar">?</span>
+        <span class="uname small" id="uname"></span>
+        <span class="role-pill" id="rolepill"></span>
+      </button>
+      <div class="dropdown" id="userdrop" hidden>
+        <button data-action="password">Change password</button>
+        <button data-action="logout">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ASK -->
+    <section class="view" id="view-ask">
+      <div class="ask" id="ask-grid">
+        <aside class="history">
+          <div class="history-head"><button class="btn" style="width:100%;justify-content:center" id="new-chat">＋ New question</button></div>
+          <div class="history-label">Recent</div>
+          <div class="history-list" id="history-list"></div>
+        </aside>
+        <div class="chat">
+          <div class="thread" id="thread"><div class="thread-inner" id="thread-inner"></div></div>
+          <div class="composer-wrap">
+            <div class="scope" id="scope" hidden></div>
+            <form class="composer" id="composer">
+              <label class="sr" for="question">Your question</label>
+              <textarea id="question" rows="1" placeholder="Ask about an ECC protocol, SOP or policy…" autocomplete="off"></textarea>
+              <button class="btn primary" type="submit" id="send">Ask</button>
+            </form>
+            <div class="disclaimer">Answers come only from ISU ECC documents — check the cited source. This is a reference tool, not a substitute for your senior clinician. Don't enter client names or record numbers.</div>
+          </div>
+        </div>
+        <aside class="panel" id="panel" hidden></aside>
+      </div>
+    </section>
+
+    <!-- LIBRARY -->
+    <section class="view" id="view-library" hidden>
+      <div class="page"><div class="page-inner">
+        <h2>Document library</h2>
+        <p class="muted" style="margin:0">Every protocol, SOP and teaching file the assistant answers from.</p>
+        <div class="toolbar">
+          <input class="input" id="lib-search" type="search" placeholder="Search titles and contents…">
+          <div class="chips" id="lib-cats"></div>
+        </div>
+        <div id="lib-list" class="doc-list"></div>
+      </div></div>
+    </section>
+
+    <!-- FACULTY -->
+    <section class="view" id="view-faculty" hidden>
+      <div class="page"><div class="page-inner">
+        <h2>Faculty</h2>
+        <p class="muted" style="margin:0">Keep the library current, see what residents and interns are asking, and manage accounts.</p>
+        <div class="subtabs" role="tablist">
+          <button class="subtab" data-sub="docs" aria-selected="true">Documents</button>
+          <button class="subtab" data-sub="questions" aria-selected="false">Questions &amp; feedback</button>
+          <button class="subtab" data-sub="users" aria-selected="false">Users</button>
+          <button class="subtab" data-sub="activity" aria-selected="false">Activity log</button>
+        </div>
+        <div id="fac-docs"></div>
+        <div id="fac-questions" hidden></div>
+        <div id="fac-users" hidden></div>
+        <div id="fac-activity" hidden></div>
+      </div></div>
+    </section>
+  </main>
+
+  <div id="modal-root"></div>
+  <script src="static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# systemd unit — copy to /etc/systemd/system/ecc-assistant.service
+# then: sudo systemctl daemon-reload && sudo systemctl enable --now ecc-assistant
+[Unit]
+Description=ECC Protocol Assistant (FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+User=ecc
+Group=ecc
+WorkingDirectory=/srv/ecc-assistant/app
+EnvironmentFile=/srv/ecc-assistant/app/.env
+ExecStart=/srv/ecc-assistant/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8010 --workers 2 --proxy-headers --forwarded-allow-ips=127.0.0.1
+Restart=on-failure
+RestartSec=5
+# hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ReadWritePaths=/srv/ecc-assistant/data
+
+[Install]
+WantedBy=multi-user.target
